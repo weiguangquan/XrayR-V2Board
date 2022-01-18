@@ -181,11 +181,33 @@ install_XrayR() {
     echo "---------------------------"
     echo ""
     
+    # 设ApiHost
+    echo "设定api_host"
+    echo ""
+    read -p "请输入V2Board中的api_host:" api_host
+    [ -z "${api_host}" ]
+    echo "---------------------------"
+    echo "您设定的api_host为 ${api_host}"
+    echo "---------------------------"
+    echo ""
+    
+    # 设api_key
+    echo "设定api_key"
+    echo ""
+    read -p "请输入V2Board中的api_key:" api_key
+    [ -z "${api_key}" ]
+    echo "---------------------------"
+    echo "您设定的api_host为 ${api_key}"
+    echo "---------------------------"
+    echo ""
+    
     # Writing json
     echo "正在尝试写入配置文件..."
     wget https://cdn.jsdelivr.net/gh/weiguangquan/XrayR-V2Board/config.yml -O /etc/XrayR/config.yml
     sed -i "s/NodeID:.*/NodeID: ${node_id}/g" /etc/XrayR/config.yml
     sed -i "s/NodeType:.*/NodeType: ${node_type}/g" /etc/XrayR/config.yml
+    sed -i "s/ApiHost:.*/ApiHost: ${api_host}/g" /etc/XrayR/config.yml
+    sed -i "s/ApiKey:.*/ApiKey: ${api_key}/g" /etc/XrayR/config.yml
     echo ""
     echo "写入完成，正在尝试重启XrayR服务..."
     echo
